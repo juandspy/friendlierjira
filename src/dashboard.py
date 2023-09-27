@@ -48,7 +48,7 @@ class Dashboard:
                     x=data[self.x],
                     y=data['tendency'],
                     mode = 'lines'))
-            fig.update_layout(title=self.name)
+        fig.update_layout(title=self.name)
         st.plotly_chart(fig, use_container_width=True)
 
     def render(self):
