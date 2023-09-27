@@ -6,7 +6,6 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
-from streamlit_ace import st_ace
 
 from src.reader import run_query
 
@@ -58,10 +57,7 @@ class Dashboard:
         with st.expander("Raw data", expanded=False):
             st.dataframe(data)
         with st.expander("SQL query", expanded=False):
-            st_ace(
+            st.code(
                 language="sql",
-                min_lines=3,
-                key=f"{self.name}_user_input_readonly",
-                value=self.query,
-                readonly=True)
+                body=self.query)
         self.plot()
