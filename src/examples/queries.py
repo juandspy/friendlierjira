@@ -36,5 +36,24 @@ SELECT
 FROM jira_issue
 WHERE project_key = 'CCXDEV' AND creator_display_name = 'Juan Diaz Suarez'
 LIMIT 10;
+""",
+
+    "Epics in this quarter":
+"""
+SELECT
+    key,
+    summary
+    created,
+    EXTRACT(DAY FROM NOW() - created) as age,
+    assignee_display_name,
+    creator_display_name,
+    status,
+    resolution_date,
+    updated
+FROM jira_issue
+WHERE project_key = 'CCXDEV'
+    AND type = 'Epic'
+    AND fields['fixVersions'][0]->>'name' = '2023Q4'
+LIMIT 10;
 """
 }
