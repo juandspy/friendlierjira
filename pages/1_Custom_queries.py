@@ -5,7 +5,7 @@ from streamlit_ace import st_ace
 
 from src.reader import run_query
 from src.examples.queries import SAMPLE_QUERIES
-
+from src.dataframe import show_df_with_download_button
 
 st.write("# Custom queries")
 
@@ -24,7 +24,7 @@ with st.expander("Result", expanded=True):
     if query:
         try:
             ans = run_query(query)
-            st.dataframe(ans)
+            show_df_with_download_button(ans)
         except Exception as ex:
             st.error(
                 f"""

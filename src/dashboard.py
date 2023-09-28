@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
 
 from src.reader import run_query
+from src.dataframe import show_df_with_download_button
 
 
 class Dashboard:
@@ -55,7 +56,7 @@ class Dashboard:
         """Show the raw data, SQL query and plot."""
         data = self.get_ans()
         with st.expander("Raw data", expanded=False):
-            st.dataframe(data)
+            show_df_with_download_button(data)
         with st.expander("SQL query", expanded=False):
             st.code(
                 language="sql",
