@@ -119,4 +119,26 @@ HAVING EXTRACT(YEAR FROM DATE_TRUNC('month', resolution_date)) > 2000;
         y="total_story_points",
         group_by="assignee_display_name",
         plot_fun=px.line),
+
+# TODO: I would like to add this query, but it takes too much and timesout
+#     Dashboard(
+#         name="Epic size",
+#         query="""
+# SELECT
+#     e.key AS epic_key,
+#     e.summary AS epic_summary,
+#     DATE_TRUNC('week', i.created) AS week_start,
+#     COUNT(i.key) AS number_of_issues
+# FROM jira_issue AS i
+# JOIN jira_issue AS e ON i.epic_key = e.key
+# WHERE i.project_key = 'CCXDEV'
+#     AND i.type = 'Epic'
+# GROUP BY e.key, e.summary, week_start
+# ORDER BY week_start, epic_key;
+# """,
+#         x="week_start",
+#         y="number_of_issues",
+#         group_by="epic_key",
+#         plot_fun=px.line),
+
 ]
