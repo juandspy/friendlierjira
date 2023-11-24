@@ -7,9 +7,11 @@ THIS_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 STREAMLIT_MAIN := Home.py
 PATH_TO_BIN := venv/bin
 
+install:
+	virtualenv venv 
+	${PATH_TO_BIN}/pip install -r requirements.txt
 
-
-run:  ## Runs the Streamlit application
+run: install  ## Runs the Streamlit application
 	podman start steampipe-jira ||  podman run \
 		-p 9193:9193 \
 		-d \

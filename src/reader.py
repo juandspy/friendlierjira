@@ -11,7 +11,8 @@ CONNECTION_STRING = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{
 
 engine = create_engine(
     CONNECTION_STRING,
-    connect_args={"statement_timeout": QUERY_TIMEOUT_SECONDS * 1000}
+    connect_args={
+        "options": f"-c statement_timeout={QUERY_TIMEOUT_SECONDS * 1000}"}
     if QUERY_TIMEOUT_SECONDS > 0 else {},
     echo=True
 )
